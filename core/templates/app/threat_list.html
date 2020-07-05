@@ -1,0 +1,44 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+<p>List of threats:</p>
+
+<ul>
+    {% for object in object_list %}
+        <li>
+            <a href="{% url 'authenticate' object.pk %}">{{ object.who }}</a>
+            <a href="{% url 'viewDetail' object.pk %}" class="btn btn-primary text-white">View</a>
+            <a href="{% url 'approve' object.pk %}" class="btn btn-success text-white">Approve</a>
+            <a href="{% url 'reject' object.pk %}" class="btn btn-danger text-white">Reject</a>
+            <a href="{% url 'update' object.pk %}">Update</a>
+            <a href="{% url 'delete' object.pk %}" class="text-danger">Delete</a>
+        </li>
+        <br>
+        {% empty %}
+        <li>No Threats yet</li>
+    {% endfor %}
+
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/view/?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/view/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+    <hr>
+    <center><a href="{% url 'submit' %}">Add a threat</a></center>
+</ul>
+
+
+
+{% endblock %}

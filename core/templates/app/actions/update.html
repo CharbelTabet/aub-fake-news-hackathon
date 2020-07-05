@@ -1,0 +1,11 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+<h4>About updating threads</h4>
+<p>Updating threads description..</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Update" class="btn btn-primary text-white">
+</form>
+
+{% endblock %}

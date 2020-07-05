@@ -1,0 +1,27 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+
+<h4>Adding threads:</h4>
+<p>
+    threads can be added this way as you see.... [Description]
+</p>
+
+<div class="container">
+    <form action="" method="POST" >
+        {% csrf_token %}
+        <div class="row">        
+            {% for f in form %}
+                <div class="col-md-6 col-sm-12">
+                    {{ f.label_tag }}
+                    {{ f }}
+                    {{ counter }}
+                </div>
+            {% endfor %}
+        </div>
+        <p><input type="submit" value="Submit news" class="my-2 btn btn-primary"></p>
+    </form>
+</div>
+
+
+
+{% endblock %}

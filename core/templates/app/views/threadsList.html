@@ -1,0 +1,56 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+
+<h4>Introducing the threads</h4>
+<p>
+    The threads
+</p>
+
+    <div class="card-group">
+        {% for object in object_list %}
+            <div class="card">
+                <img class="card-img-top" src="https://picsum.photos/147/180" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ object.title }}</h5>
+                  <p class="card-text">{{ object.description }}</p>
+                  <a href="{% url 'viewDetail' object.pk %}">View</a>
+                  <!-- <a href="{% url 'approve' object.pk %}" class="text-success">Approve</a>
+                  /
+                  <a href="{% url 'reject' object.pk %}" class="text-danger">Reject</a> -->
+                  <hr>
+                  <p>
+                      <a href="{% url 'update' object.pk %}">Update</a>
+                      <a href="{% url 'delete' object.pk %}" class="text-danger">Delete</a>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>                
+            <br>
+            {% empty %}
+            <li>No Threats yet</li>
+        {% endfor %}
+    </div>
+    {% if is_paginated %}
+    <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/threads/?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/threads/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+    </div>
+    {% endif %}
+    <hr>
+    <center><a href="{% url 'submit' %}">Add a threat</a></center>
+
+<hr>
+
+
+{% endblock %}

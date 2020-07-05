@@ -1,0 +1,71 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+
+<h5>About Topics</h5>
+<p>Topic explanation</p>
+
+<p>
+    <a href="{% url 'addTopic' %}" class="btn btn-primary text-white">Add Topic</a>    
+</p>
+
+<div class="container">
+    <div class="row">
+    {% for object in object_list %}   
+        <div class="col-sm-4 card">
+            <img src="https://picsum.photos/147/180" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ object.title }}</h5>
+                <p class="card-text">{{ object.description }}</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a class="text-primary" href="{% url 'updateTopic' object.pk %}">Update</a>
+                /
+                <a class="text-danger" href="{% url 'deleteTopic' object.pk %}">Delete</a>
+            </div>
+        </div> 
+        {% empty %}
+        <li>No Topics yet</li>
+    {% endfor %}
+    </div>
+</div>
+{% if is_paginated %}
+<div class="pagination">
+    <span class="page-links">
+        {% if page_obj.has_previous %}
+            <a href="/topics/?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+        <span class="page-current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+        {% if page_obj.has_next %}
+            <a href="/topics/?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+
+<!-- <div class="card-group">
+    {% for object in object_list %}
+        <div class="card-deck">
+            <img class="card-img-top" src="https://picsum.photos/147/180" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{ object.title }}</h5>
+              <p class="card-text">{{ object.description }}</p>
+              <a href="{% url 'viewDetail' object.pk %}">View</a>
+              
+              <hr>
+              <p>
+                  <a href="{% url 'update' object.pk %}">Update</a>
+                  <a href="{% url 'delete' object.pk %}" class="text-danger">Delete</a>
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+        </div>                
+        <br>
+        {% empty %}
+        <li>No Topics yet</li>
+    {% endfor %}
+</div> -->
+
+{% endblock %}

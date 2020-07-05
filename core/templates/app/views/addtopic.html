@@ -1,0 +1,19 @@
+{% extends '../../layouts/baseLayout.html' %}
+
+{% block content %}
+
+<h4>About adding topics:</h4>
+<p>Paragraph describing..</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <p>
+            {{ field.label }}:
+            {{ field }}
+        </p>
+    {% endfor %}
+    <button value="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

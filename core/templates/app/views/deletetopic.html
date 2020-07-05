@@ -1,0 +1,9 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+<h4>About deleting threads</h4>
+<p>Deleting topics description..</p>
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete the topic named "{{ object }}"?</p>
+    <input type="submit" value="Confirm" class="btn btn-danger">
+</form>
+{% endblock %}

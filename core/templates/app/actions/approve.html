@@ -1,0 +1,25 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+
+<h4>About approving threads</h4>
+<p>Approving threads description..</p>
+
+<hr>
+
+<h1 class="text-success">Approve: </h1>
+{{ object }}
+
+
+<div class="form-check">
+<form method="POST" class="form-check">
+  {% csrf_token %}
+  
+  <label>Reasons, arguments:</label>
+  {{ form.comment }}
+
+  <br>
+
+  <input type="submit" class="btn btn-primary text-white">
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends '../../layouts/baseLayout.html' %}
+{% block content %}
+
+<h1 class="text-danger">Reject: </h1>
+{{ object }}
+
+<hr>
+
+<div class="form-check">
+<form method="POST" class="form-check">
+  {% csrf_token %}
+  
+  <label>Reasons, arguments:</label>
+  {{ form.comment }}
+
+  <br>
+
+  <input type="submit" class="btn btn-primary text-white">
+</form>
+</div>
+{% endblock %}
